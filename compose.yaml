@@ -1,0 +1,12 @@
+services:
+  ssh-server:
+    build:
+      context: .  # Dockerfileがあるディレクトリへのパス
+      dockerfile: Dockerfile  # オプション: デフォルトはDockerfile
+    ports:
+      - "2222:22"  # ホストの2222ポートをコンテナの22ポートにマッピング
+    volumes:
+      - ./host_keys:/app/host_keys  # ホスト鍵をコンテナにマウント
+    environment:
+      - SSH_USER=username  # SSHユーザ名（環境変数をアプリで使用する場合）
+      - SSH_PASSWORD=password  # SSHパスワード（環境変数をアプリで使用する場合）
